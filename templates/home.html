@@ -1,15 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:color="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Headlines</title>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
+<br>
 <body>
-
 <h1>Headlines </h1>
-<form action ="/" method="POST">
+<form action ="/" method="GET" color:black;>
     <input type="text" name="publication" placeholder="search">
     <input type="submit" value="submit">
+
+
+    &nbsp;<input type="text" name="city" placeholder="weather search">
+    <input type="submit" value="submit"></br>
+
+<h2>Current weather</h2>
+<p>city: <b>{{ weather.city}}{{weather.country}}</b></p>
+<p>{{ weather.description }} | {{ weather.temperature }}&#8451;</p>
 </form>
 {% for article in article %}
     <b><a href="{{ article.link }}">{{article.title}}</a></b><br/>
