@@ -4,27 +4,63 @@
     <meta charset="UTF-8">
     <title>Headlines</title>
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<style>
+
+    #header{
+        background: aliceblue;
+        max-width: 100%;
+    }
+    #search{
+        background-color: lemonchiffon;
+    }
+    #news{
+       float:right;
+        margin-right: 10px;
+
+    }
+</style>
 </head>
-<br>
 <body>
-<h1>Headlines </h1>
-<form action ="/" method="GET" color:black;>
-    <input type="text" name="publication" placeholder="search">
+<div id="header">
+   &nbsp;<h1>Headlines </h1>
+<p>Headlines.current weather.currency
+</div>
+<div id="search">
+<form action ="/" method="GET">
+<h2>Headlines Search</h2>
+      &nbsp;<input type="text" name="publication" placeholder="search">
     <input type="submit" value="submit">
 
-
-    &nbsp;<input type="text" name="city" placeholder="weather search">
+<h2>Current weather</h2>
+      &nbsp;<input type="text" name="city" placeholder="weather search">
     <input type="submit" value="submit"></br>
 
-<h2>Current weather</h2>
-<p>city: <b>{{ weather.city}}{{weather.country}}</b></p>
-<p>{{ weather.description }} | {{ weather.temperature }}&#8451;</p>
+<p>city: <b>{{ weather.city}}{{weather.country}}</b>
+<br>{{ weather.description }} | {{ weather.temperature }}&#8451;
+
+    <h2>Currency</h2>
+    1{{ currency_from }}={{ currency_to }}{{ rate }}
+    From:<select name="currency_from">
+    {% for currency in currencies %}
+<option value="{{ currency }}"{{ 'selected="selected"' if currency_to==currency }}>{{ currency }}</option>
+    {% endfor %}
+</select>
+    To:<select name="currency_to">
+    {% for currency in currencies%}
+    <option value="{{ currency }}"{{ 'selected="selected"' if currency_from==currency }}>{{ currency }}</option>
+   {% endfor %}
+</select>
+    <input type="submit" value="submit"></p>
+
 </form>
+</div>
+<div id="news">
 {% for article in article %}
     <b><a href="{{ article.link }}">{{article.title}}</a></b><br/>
     <i>{{article.published}}</i><br/>
     <p>{{article.summary}}</p>
     <hr />
 {% endfor %}
+</div>
 </body>
 </html>
